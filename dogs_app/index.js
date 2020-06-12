@@ -21,17 +21,36 @@ function displayDogs(dogs) {
 }
 
 function showDog(dog) {
-  const dogCard = document.createElement("div");
-  
-  const name = document.createElement("h2");
-  name.innerHTML = 
-    `<a href="/dogShow.html?dogId=${dog.id}">${dog.name}<a/>`; 
-  
-  const age = document.createElement("p");
-  age.textContent = `${dog.age} years old`;
+  const $dogCard = document.createElement("div");
+  console.log(removeDog)
+  $dogCard.append(cardTitle(dog), cardAge(dog), removeDog(dog));
+  dogsSection.append($dogCard);
+}
 
-  dogCard.append(name, age);
-  dogsSection.append(dogCard);
+function cardTitle(dog) {
+  const $name = document.createElement("h2");
+  $name.innerHTML = 
+    `<a href="/dogShow.html?dogId=${dog.id}">${dog.name}<a/>`;
+  return $name
+}
+
+function cardAge(dog) {
+  const $age = document.createElement("p");
+  $age.textContent = `${dog.age} years old`;
+  return $age 
+}
+
+function removeDog(dog) {
+  const $remove = document.createElement('form')
+  $remove.method = 'POST'
+  $remove.action = `http://localhost:3000/dogs/${dog.id}`
+  $remove.id = 'delete'
+  $remove.innerHTML =
+    `
+      <input type="hidden" name="_method" value="DELETE" />
+      <input type="submit" value="Remove Cat Infiltrator!"/>
+    `
+  return $remove
 }
 
 function parseJSON(response) {

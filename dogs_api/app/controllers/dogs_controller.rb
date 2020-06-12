@@ -15,13 +15,14 @@ class DogsController < ApplicationController
       name: params[:name],
       age: params[:age]
     )
-    render json: @dog
+    redirect_to 'http://localhost:3001'
   end
 
   def destroy
-    # add that it destroys bones as well.
+    @dog.bones.destroy_all
     @dog.destroy
-    render status: :no_content
+    # render status: :no_content
+    redirect_to 'http://localhost:3001'
   end
 
   def update

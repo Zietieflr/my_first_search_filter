@@ -31,11 +31,13 @@
     <input type="submit" value="Add dog!" /> 
   </form>
   <br>
-  <form method="PATCH" action="http://localhost:3001">
+  <form method="POST" action="http://localhost:3001" id="update">
     <label for="name">Filter to the dog to update:</label> <br>
+    <input type="hidden" name="_method" value="PATCH" />
     <input name="name" placeholder="What's their name?" /><br>
     <input name="age" placeholder="What's their age?" />
     <input type="submit" value="Add dog!" />
   </form>
+  <br>
 </body>
 </html>
