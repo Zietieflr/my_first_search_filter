@@ -2,6 +2,15 @@ body {
   background-color: rgb(245, 245, 245);
 }
 
+h1 > a {
+  text-decoration: none;
+  color: black;
+}
+
+a:visited {
+  color: black; 
+}
+
 section {
   display: flex;
   flex-wrap: wrap;

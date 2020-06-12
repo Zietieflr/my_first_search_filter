@@ -13,8 +13,29 @@
   <title>Filtering Dogs</title>
 </head>
 <body>
-  <h1>Filtering Dogs!</h1>
+  <h1><a href="http://localhost:3001">Dogs, dogs, DOGS!</a></h1>
+  <form action="http://localhost:3001" method="GET" id="filter">
+    <label>Which dogs?</label> <br> 
+    <input name="search" placeholder="Enter dog name or age" />
+    <input type="submit" value="Filter dogs!" />
+  </form>
+  <br>
+
 
   <section></section>
+
+  <form method="POST" action="http://localhost:3001" id="create">
+    <label for="name">Add a dog here:</label> <br>
+    <input name="name" placeholder="What's their name?" /><br>
+    <input name="age" placeholder="What's their age?" />
+    <input type="submit" value="Add dog!" /> 
+  </form>
+  <br>
+  <form method="PATCH" action="http://localhost:3001">
+    <label for="name">Filter to the dog to update:</label> <br>
+    <input name="name" placeholder="What's their name?" /><br>
+    <input name="age" placeholder="What's their age?" />
+    <input type="submit" value="Add dog!" />
+  </form>
 </body>
 </html>

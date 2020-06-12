@@ -1,8 +1,54 @@
 class DogsController < ApplicationController
+  before_action :where_dog, only: [:show, :destroy, :update]
 
   def index
-    @dogs = Dog.all
-    render json: @dogs
+    @dogs = search_params?
+    render json: @dogs, include: [:bones]
   end
 
+  def show
+    render json: @dog, include: [:bones]
+  end
+
+  def create
+    @dog = Dog.create(
+      name: params[:name],
+      age: params[:age]
+    )
+    render json: @dog
+  end
+
+  def destroy
+    # add that it destroys bones as well.
+    @dog.destroy
+    render status: :no_content
+  end
+
+  def update
+    @dog = {
+      name: params[:name],
+      age: params[:age]
+    }
+    render json: @dog
+  end
+
+  def search_params?
+    if params['search']
+      search_params_type
+    else
+      Dog.all
+    end
+  end
+
+  def search_params_type
+    if params['search'].to_i.positive?
+      Dog.where(age: params['search'])
+    else
+      Dog.where('name LIKE ?', "%#{params['search']}%")
+    end
+  end
+
+  def where_dog
+    @dog = Dog.find(params[:id])
+  end
 end
