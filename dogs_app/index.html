@@ -24,19 +24,11 @@
 
   <section></section>
 
-  <form method="POST" action="http://localhost:3001" id="create">
+  <form method="POST" action="http://localhost:3000/dogs" id="create">
     <label for="name">Add a dog here:</label> <br>
     <input name="name" placeholder="What's their name?" /><br>
     <input name="age" placeholder="What's their age?" />
     <input type="submit" value="Add dog!" /> 
-  </form>
-  <br>
-  <form method="POST" action="http://localhost:3001" id="update">
-    <label for="name">Filter to the dog to update:</label> <br>
-    <input type="hidden" name="_method" value="PATCH" />
-    <input name="name" placeholder="What's their name?" /><br>
-    <input name="age" placeholder="What's their age?" />
-    <input type="submit" value="Add dog!" />
   </form>
   <br>
 </body>

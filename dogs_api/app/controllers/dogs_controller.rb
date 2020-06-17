@@ -30,7 +30,7 @@ class DogsController < ApplicationController
       name: params[:name],
       age: params[:age]
     }
-    render json: @dog
+    redirect_to "http://localhost:3001/dogShow.html?dogId=#{@dog.id}"
   end
 
   def search_params?

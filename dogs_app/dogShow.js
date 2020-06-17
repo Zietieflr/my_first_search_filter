@@ -9,14 +9,12 @@ fetch(`http://localhost:3000/dogs/${searchId}`)
 
 function subPage(result) {
   generatePageTitle(result.name)
-  main.append(displayResultInfo(result), listSubCategory(result.bones))
+  main.append(displayResultInfo(result), listSubCategory(result.bones), updateInfo(result))
 }
 
 function generatePageTitle(title) {
   const $title = document.getElementById('title')
-  $title.innerHTML = `
-    <a href="http://localhost:3001">${title}</a>
-  ` 
+  $title.innerHTML = `<a href="http://localhost:3001">${title}</a>` 
   console.log(title)
 }
 
@@ -50,4 +48,19 @@ function SubCategoryFormat(result, $dl) {
   $dt.innerText = result.name
   $dd.innerText = `Rating: ${result.quality}`
   $dl.append($dt, $dd)
+}
+
+function updateInfo(result) {
+  const $p = document.createElement('p')
+  $p.innerHTML = `
+    <form method="POST" action="http://localhost:3000/dogs/${result.id}" id="update">
+    <label for="name">Filter to the dog to update:</label> <br>
+    <input type="hidden" name="_method" value="PATCH" />
+    <input name="name" placeholder="What's their name?" /><br>
+    <input name="age" placeholder="What's their age?" />
+    <input type="submit" value="Add dog!" />
+    </form>
+  `
+
+  return $p
 }
